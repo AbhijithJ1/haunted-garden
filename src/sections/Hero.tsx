@@ -63,7 +63,7 @@ export const Hero: React.FC<HeroProps> = ({ onExamineDossier }) => {
   const isOutro = activeFrame.id === "loop-complete";
   const isChapter = !isEntry && !isOutro;
 
-  const currentVideoSrc = activeFrame.videoSrc || "/videos/feature-2.mp4";
+  const currentYoutubeId = activeFrame.youtubeId || "G_hqJxTMFn0";
 
   return (
     <section
@@ -86,8 +86,8 @@ export const Hero: React.FC<HeroProps> = ({ onExamineDossier }) => {
           overflow: "hidden",
         }}
       >
-        {/* Native Hosted Cinedread Background Video (Zero Bot Checks, Zero Watermarks) */}
-        <BackgroundVideo videoSrc={currentVideoSrc} />
+        {/* Authentic Haunted Garden Horror Background Video */}
+        <BackgroundVideo youtubeId={currentYoutubeId} />
 
         {/* Top Status Header (Only visible for chapters 1-6) */}
         {isChapter && (

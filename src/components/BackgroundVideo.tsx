@@ -1,43 +1,16 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 
 interface BackgroundVideoProps {
-  videoSrc?: string;
+  youtubeId?: string;
   className?: string;
   style?: React.CSSProperties;
 }
 
 export const BackgroundVideo: React.FC<BackgroundVideoProps> = ({
-  videoSrc = "/videos/feature-2.mp4",
+  youtubeId = "G_hqJxTMFn0", // User-provided Haunted Garden horror video
   className = "",
   style = {},
 }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    video.muted = true;
-    video.playsInline = true;
-    video.loop = true;
-    video.autoplay = true;
-
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        const handleInteraction = () => {
-          video.play().catch(() => {});
-          window.removeEventListener("click", handleInteraction);
-          window.removeEventListener("scroll", handleInteraction);
-          window.removeEventListener("touchstart", handleInteraction);
-        };
-        window.addEventListener("click", handleInteraction, { once: true });
-        window.addEventListener("scroll", handleInteraction, { once: true });
-        window.addEventListener("touchstart", handleInteraction, { once: true });
-      });
-    }
-  }, [videoSrc]);
-
   return (
     <div
       className={className}
@@ -56,23 +29,24 @@ export const BackgroundVideo: React.FC<BackgroundVideoProps> = ({
       }}
       aria-hidden="true"
     >
-      {/* 
-        Native Hosted Local Video Background 
-        Guaranteed: Zero YouTube bot checks, Zero watermarks, Zero play buttons, Zero controls
-      */}
-      <video
-        ref={videoRef}
-        key={videoSrc}
-        src={videoSrc}
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        controls={false}
-        disablePictureInPicture
-        disableRemotePlayback
-        className="w-full h-full object-cover pointer-events-none"
+      <iframe
+        key={youtubeId}
+        src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&playsinline=1`}
+        title="The Haunted Garden Atmosphere"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        referrerPolicy="strict-origin-when-cross-origin"
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          width: "140vw",
+          height: "140vh",
+          minWidth: "100%",
+          minHeight: "100%",
+          transform: "translate(-50%, -50%)",
+          border: "none",
+          pointerEvents: "none",
+        }}
       />
     </div>
   );
