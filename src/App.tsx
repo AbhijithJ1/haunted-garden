@@ -57,9 +57,9 @@ export const App: React.FC = () => {
       className="relative min-h-screen bg-[#030306] text-[#E8E3DF] overflow-x-hidden select-none"
       style={{ colorScheme: "dark" }}
     >
-      {/* Background Video for Remaining Pages (Fixed underneath all sections) */}
+      {/* Native Local Background Video for Remaining Pages (Fixed behind all sections) */}
       <BackgroundVideo
-        youtubeId="G_hqJxTMFn0"
+        videoSrc="/videos/feature-4.mp4"
         style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", zIndex: 0 }}
       />
 
@@ -76,7 +76,7 @@ export const App: React.FC = () => {
       />
 
       <main className="relative z-10 w-full">
-        {/* Stage 1: The Pinned Scrollytelling Runway (Original Haunted Garden Video) */}
+        {/* Stage 1: The Pinned Scrollytelling Runway (Native Cinedread Video Background) */}
         <Hero onExamineDossier={setSelectedDossier} />
 
         {/* Stage 2: Historical Context & Archival Records */}

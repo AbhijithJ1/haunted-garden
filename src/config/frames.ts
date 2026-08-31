@@ -8,8 +8,7 @@ export interface Frame {
   sensoryNotes: string[];
   fieldObservation: string;
   colorAccent: string;
-  heroYoutubeId: string;
-  remainingYoutubeId: string;
+  videoSrc: string;
 }
 
 export const frames: Frame[] = [
@@ -23,8 +22,7 @@ export const frames: Frame[] = [
     sensoryNotes: ["Rusted iron", "Wet cemetery moss", "Decaying oak leaves"],
     fieldObservation: "The path continues downhill even when walking in reverse.",
     colorAccent: "#8B0E1A",
-    heroYoutubeId: "G_hqJxTMFn0", // Verified working haunted garden forest video
-    remainingYoutubeId: "wAYmBe02IN0",
+    videoSrc: "/videos/feature-2.mp4",
   },
   {
     id: "maheshwari",
@@ -36,8 +34,7 @@ export const frames: Frame[] = [
     sensoryNotes: ["Ghost lotus", "Cold pond water", "Grave stone dust"],
     fieldObservation: "Her reflection in the black water faces in the opposite direction.",
     colorAccent: "#E5E0DA",
-    heroYoutubeId: "wAYmBe02IN0",
-    remainingYoutubeId: "0cKRJMnFJ3g",
+    videoSrc: "/videos/feature-3.mp4",
   },
   {
     id: "mahalakshmi",
@@ -49,8 +46,7 @@ export const frames: Frame[] = [
     sensoryNotes: ["Black rose", "Blood pear", "Funeral amber"],
     fieldObservation: "The scent of sweet fermented wine precedes a rapid drop in ambient pressure.",
     colorAccent: "#8B0E1A",
-    heroYoutubeId: "0cKRJMnFJ3g",
-    remainingYoutubeId: "G_hqJxTMFn0",
+    videoSrc: "/videos/feature-4.mp4",
   },
   {
     id: "mahakali",
@@ -62,8 +58,7 @@ export const frames: Frame[] = [
     sensoryNotes: ["Burnt oud", "Ash pepper", "Obsidian resin"],
     fieldObservation: "Lantern flames turn a cold violet hue within twelve paces of her presence.",
     colorAccent: "#241926",
-    heroYoutubeId: "G_hqJxTMFn0",
-    remainingYoutubeId: "wAYmBe02IN0",
+    videoSrc: "/videos/feature-5.mp4",
   },
   {
     id: "mahashakti",
@@ -75,8 +70,7 @@ export const frames: Frame[] = [
     sensoryNotes: ["Burnt saffron", "Charred vanilla", "Blackened cedar"],
     fieldObservation: "The heat emits no smoke, only a faint vibration in the inner ear.",
     colorAccent: "#D9621E",
-    heroYoutubeId: "wAYmBe02IN0",
-    remainingYoutubeId: "0cKRJMnFJ3g",
+    videoSrc: "/videos/feature-2.mp4",
   },
   {
     id: "jungle-essence",
@@ -88,8 +82,7 @@ export const frames: Frame[] = [
     sensoryNotes: ["Crushed ferns", "Damp earth", "Stormwater accord"],
     fieldObservation: "When all wind ceases, the canopy sways in rhythm with human respiration.",
     colorAccent: "#1B3B2B",
-    heroYoutubeId: "0cKRJMnFJ3g",
-    remainingYoutubeId: "G_hqJxTMFn0",
+    videoSrc: "/videos/feature-3.mp4",
   },
   {
     id: "himalaya-essence",
@@ -101,8 +94,7 @@ export const frames: Frame[] = [
     sensoryNotes: ["Frozen citrus", "Black juniper", "Pale musk"],
     fieldObservation: "Sub-zero frost forms on the inside of sealed glass lenses.",
     colorAccent: "#6B8FA3",
-    heroYoutubeId: "G_hqJxTMFn0",
-    remainingYoutubeId: "wAYmBe02IN0",
+    videoSrc: "/videos/feature-4.mp4",
   },
   {
     id: "loop-complete",
@@ -114,7 +106,6 @@ export const frames: Frame[] = [
     sensoryNotes: ["Obsidian dust", "Cold linen", "Lingering smoke"],
     fieldObservation: "Leaving the estate was an illusion. The boundary now encompasses you.",
     colorAccent: "#8B0E1A",
-    heroYoutubeId: "wAYmBe02IN0",
-    remainingYoutubeId: "0cKRJMnFJ3g",
+    videoSrc: "/videos/feature-5.mp4",
   },
 ];

@@ -1,16 +1,43 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 
 interface BackgroundVideoProps {
-  youtubeId?: string;
+  videoSrc?: string;
   className?: string;
   style?: React.CSSProperties;
 }
 
 export const BackgroundVideo: React.FC<BackgroundVideoProps> = ({
-  youtubeId = "2kM6u8jF3gQ", // The original Haunted Garden video
+  videoSrc = "/videos/feature-2.mp4",
   className = "",
   style = {},
 }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    video.playsInline = true;
+    video.loop = true;
+    video.autoplay = true;
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        const handleInteraction = () => {
+          video.play().catch(() => {});
+          window.removeEventListener("click", handleInteraction);
+          window.removeEventListener("scroll", handleInteraction);
+          window.removeEventListener("touchstart", handleInteraction);
+        };
+        window.addEventListener("click", handleInteraction, { once: true });
+        window.addEventListener("scroll", handleInteraction, { once: true });
+        window.addEventListener("touchstart", handleInteraction, { once: true });
+      });
+    }
+  }, [videoSrc]);
+
   return (
     <div
       className={className}
@@ -29,23 +56,23 @@ export const BackgroundVideo: React.FC<BackgroundVideoProps> = ({
       }}
       aria-hidden="true"
     >
-      <iframe
-        key={youtubeId}
-        src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${youtubeId}&playsinline=1&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&showinfo=0&fs=0&enablejsapi=1`}
-        title="The Haunted Garden Atmospheric Background"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          width: "140vw",
-          height: "140vh",
-          minWidth: "100%",
-          minHeight: "100%",
-          transform: "translate(-50%, -50%)",
-          border: "none",
-          pointerEvents: "none",
-        }}
+      {/* 
+        Native Hosted Local Video Background 
+        Guaranteed: Zero YouTube bot checks, Zero watermarks, Zero play buttons, Zero controls
+      */}
+      <video
+        ref={videoRef}
+        key={videoSrc}
+        src={videoSrc}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        controls={false}
+        disablePictureInPicture
+        disableRemotePlayback
+        className="w-full h-full object-cover pointer-events-none"
       />
     </div>
   );
