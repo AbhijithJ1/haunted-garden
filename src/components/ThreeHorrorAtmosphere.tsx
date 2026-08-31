@@ -19,7 +19,7 @@ export const ThreeHorrorAtmosphere: React.FC<ThreeHorrorAtmosphereProps> = ({
     const width = container.clientWidth || window.innerWidth;
     const height = container.clientHeight || window.innerHeight;
 
-    // 1. Scene & Atmosphere Fog
+    // 1. Scene & Atmospheric Fog
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x020205);
     scene.fog = new THREE.FogExp2(0x020205, 0.035);
@@ -48,12 +48,12 @@ export const ThreeHorrorAtmosphere: React.FC<ThreeHorrorAtmosphereProps> = ({
     moonLight.position.set(10, 20, 15);
     scene.add(moonLight);
 
-    // Occult Crimson Glow Light
-    const occultLight = new THREE.PointLight(0x8b0e1a, 6, 25);
-    occultLight.position.set(0, 1.5, 2);
-    scene.add(occultLight);
+    // Subtle Ethereal Accent Light
+    const accentLight = new THREE.PointLight(0x8b0e1a, 4.5, 30);
+    accentLight.position.set(0, 2, 4);
+    scene.add(accentLight);
 
-    // 5. Procedural Dark Terrain with Occult Fissures
+    // 5. Procedural Dark Terrain
     const groundGeo = new THREE.PlaneGeometry(80, 80, 64, 64);
     const pos = groundGeo.attributes.position;
     for (let i = 0; i < pos.count; i++) {
@@ -79,7 +79,7 @@ export const ThreeHorrorAtmosphere: React.FC<ThreeHorrorAtmosphereProps> = ({
     ground.position.y = -1.2;
     scene.add(ground);
 
-    // 6. Gnarled Twisted Gothic Trees / Roots
+    // 6. Gnarled Gothic Trees & Branches
     const treeGroup = new THREE.Group();
     const treeMat = new THREE.MeshStandardMaterial({
       color: 0x07080f,
@@ -149,36 +149,7 @@ export const ThreeHorrorAtmosphere: React.FC<ThreeHorrorAtmosphereProps> = ({
     });
     scene.add(treeGroup);
 
-    // 7. Floating Occult Relic Core (Faceted Polyhedron Crystal)
-    const relicGroup = new THREE.Group();
-    relicGroup.position.set(0, 1.4, 1.5);
-
-    const relicGeo = new THREE.IcosahedronGeometry(1.0, 0);
-    const relicMat = new THREE.MeshStandardMaterial({
-      color: 0x8b0e1a,
-      roughness: 0.15,
-      metalness: 0.85,
-      emissive: 0x3d050a,
-      emissiveIntensity: 0.8,
-      wireframe: false,
-    });
-    const relicMesh = new THREE.Mesh(relicGeo, relicMat);
-    relicGroup.add(relicMesh);
-
-    // Outer Occult Cage Wireframe
-    const cageGeo = new THREE.IcosahedronGeometry(1.35, 1);
-    const cageMat = new THREE.MeshBasicMaterial({
-      color: 0x8b0e1a,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.45,
-    });
-    const cageMesh = new THREE.Mesh(cageGeo, cageMat);
-    relicGroup.add(cageMesh);
-
-    scene.add(relicGroup);
-
-    // 8. 3,500 Swirling Atmospheric Spores & Fireflies
+    // 7. 3,500 Swirling Atmospheric Spores & Fireflies
     const particleCount = 3500;
     const particleGeo = new THREE.BufferGeometry();
     const pCoords = new Float32Array(particleCount * 3);
@@ -210,19 +181,18 @@ export const ThreeHorrorAtmosphere: React.FC<ThreeHorrorAtmosphereProps> = ({
     particleGeo.setAttribute("position", new THREE.BufferAttribute(pCoords, 3));
     particleGeo.setAttribute("color", new THREE.BufferAttribute(pColors, 3));
 
-    // Particle Material with Soft Glow
     const particleMat = new THREE.PointsMaterial({
-      size: 0.14,
+      size: 0.13,
       vertexColors: true,
       transparent: true,
-      opacity: 0.85,
+      opacity: 0.8,
       blending: THREE.AdditiveBlending,
     });
 
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
 
-    // 9. Interactive Mouse Parallax
+    // 8. Interactive Mouse Parallax
     let mouseX = 0;
     let mouseY = 0;
     let targetMouseX = 0;
@@ -234,7 +204,7 @@ export const ThreeHorrorAtmosphere: React.FC<ThreeHorrorAtmosphereProps> = ({
     };
     window.addEventListener("mousemove", handleMouseMove);
 
-    // 10. Resize Handler
+    // 9. Resize Handler
     const handleResize = () => {
       if (!container) return;
       const w = container.clientWidth || window.innerWidth;
@@ -245,7 +215,7 @@ export const ThreeHorrorAtmosphere: React.FC<ThreeHorrorAtmosphereProps> = ({
     };
     window.addEventListener("resize", handleResize);
 
-    // 11. 60FPS Render Loop with Scroll Camera Descent
+    // 10. 60FPS Render Loop with Scroll Camera Descent
     let animId: number;
     let clock = new THREE.Clock();
 
@@ -268,16 +238,8 @@ export const ThreeHorrorAtmosphere: React.FC<ThreeHorrorAtmosphereProps> = ({
       camera.rotation.y = -mouseX * 0.12;
       camera.rotation.x = -mouseY * 0.08;
 
-      // Rotate Occult Relic
-      relicMesh.rotation.x = elapsed * 0.4;
-      relicMesh.rotation.y = elapsed * 0.6;
-      cageMesh.rotation.x = -elapsed * 0.25;
-      cageMesh.rotation.y = -elapsed * 0.35;
-      relicGroup.position.y = 1.4 + Math.sin(elapsed * 1.5) * 0.18;
-
-      // Occult Light Pulse
-      occultLight.intensity = 5 + Math.sin(elapsed * 2.5) * 2.5;
-      occultLight.position.y = relicGroup.position.y;
+      // Subtle light oscillation
+      accentLight.intensity = 3.5 + Math.sin(elapsed * 2.0) * 1.5;
 
       // Animate Particles / Spores
       const positions = particleGeo.attributes.position.array as Float32Array;
