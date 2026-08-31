@@ -1,0 +1,6 @@
+{
+  "name": "CINEDREAD 3D — Spatial Paranormal Metagame Nexus",
+  "description": "Next-generation Awwwards/Zentry-inspired spatial 3D cinematic horror exhibition featuring real-time WebGL artifact vaults, procedural infrasound synthesis, interactive lore metagames, and trailer portals.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
