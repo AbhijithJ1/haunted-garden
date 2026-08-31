@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { frames, Frame } from "../config/frames";
 import { FrameText } from "../components/FrameText";
 import { DossierCard } from "../components/DossierCard";
-import { BackgroundVideo } from "../components/BackgroundVideo";
+import { ThreeHorrorAtmosphere } from "../components/ThreeHorrorAtmosphere";
 import { ArrowDown, FileText } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -63,15 +63,13 @@ export const Hero: React.FC<HeroProps> = ({ onExamineDossier }) => {
   const isOutro = activeFrame.id === "loop-complete";
   const isChapter = !isEntry && !isOutro;
 
-  const currentYoutubeId = activeFrame.youtubeId || "G_hqJxTMFn0";
-
   return (
     <section
       id="hero-section"
       ref={heroRef}
       style={{
         position: "relative",
-        background: "#030306",
+        background: "#020205",
         minHeight: `${SCROLL_HEIGHT_VH}vh`,
       }}
     >
@@ -86,8 +84,8 @@ export const Hero: React.FC<HeroProps> = ({ onExamineDossier }) => {
           overflow: "hidden",
         }}
       >
-        {/* Authentic Haunted Garden Horror Background Video */}
-        <BackgroundVideo youtubeId={currentYoutubeId} />
+        {/* Award-Winning Three.js WebGL 3D Haunted Garden World */}
+        <ThreeHorrorAtmosphere scrollProgress={scrollProgress} />
 
         {/* Top Status Header (Only visible for chapters 1-6) */}
         {isChapter && (
